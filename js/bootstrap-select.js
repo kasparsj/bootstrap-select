@@ -262,7 +262,7 @@
     maxOptions: false,
     mobile: false,
     selectOnTab: false,
-    dropdownAlignRight: false
+    dropdownMenuStyle: ''
   };
 
   Selectpicker.prototype = {
@@ -286,8 +286,8 @@
       this.$menuInner = this.$menu.children('.inner');
       this.$searchbox = this.$menu.find('input');
 
-      if (this.options.dropdownAlignRight)
-        this.$menu.addClass('dropdown-menu-right');
+      if (this.options.dropdownMenuStyle)
+        this.$menu.addClass(this.options.dropdownMenuStyle);
 
       if (typeof id !== 'undefined') {
         this.$button.attr('data-id', id);
