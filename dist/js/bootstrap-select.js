@@ -342,7 +342,7 @@
           '<div class="dropdown-menu open">' +
           this.getHeader() +
           this.getSearchbox() +
-          this.getActionsbox(); +
+          this.getActionsbox() +
           '<ul class="dropdown-menu inner" role="menu">' +
           '</ul>' +
           this.getDoneButton() +
@@ -369,24 +369,24 @@
       getSearchbox: function() {
           return this.options.liveSearch
               ? '<div class="bs-searchbox">' +
-          '<input type="text" class="form-control" autocomplete="off"' +
-          (null === this.options.liveSearchPlaceholder ? '' : ' placeholder="' + htmlEscape(this.options.liveSearchPlaceholder) + '"') + '>' +
-          '</div>'
+                '<input type="text" class="form-control" autocomplete="off"' +
+                (null === this.options.liveSearchPlaceholder ? '' : ' placeholder="' + htmlEscape(this.options.liveSearchPlaceholder) + '"') + '>' +
+                '</div>'
               : '';
       },
 
       getActionsbox: function() {
-          return this.multiple && this.options.actionsBox ?
-          '<div class="bs-actionsbox">' +
-          '<div class="btn-group btn-group-sm btn-block">' +
-          '<button type="button" class="actions-btn bs-select-all btn btn-default">' +
-          this.options.selectAllText +
-          '</button>' +
-          '<button type="button" class="actions-btn bs-deselect-all btn btn-default">' +
-          this.options.deselectAllText +
-          '</button>' +
-          '</div>' +
-          '</div>'
+          return this.multiple && this.options.actionsBox
+              ? '<div class="bs-actionsbox">' +
+                '<div class="btn-group btn-group-sm btn-block">' +
+                '<button type="button" class="actions-btn bs-select-all btn btn-default">' +
+                this.options.selectAllText +
+                '</button>' +
+                '<button type="button" class="actions-btn bs-deselect-all btn btn-default">' +
+                this.options.deselectAllText +
+                '</button>' +
+                '</div>' +
+                '</div>'
               : '';
       },
 
