@@ -335,55 +335,72 @@
       // Options
       // If we are multiple, then add the show-tick class by default
       var multiple = this.multiple ? ' show-tick' : '',
-          inputGroup = this.$element.parent().hasClass('input-group') ? ' input-group-btn' : '',
-          autofocus = this.autofocus ? ' autofocus' : '';
-      // Elements
-      var header = this.options.header ? '<div class="popover-title"><button type="button" class="close" aria-hidden="true">&times;</button>' + this.options.header + '</div>' : '';
-      var searchbox = this.options.liveSearch ?
-      '<div class="bs-searchbox">' +
-      '<input type="text" class="form-control" autocomplete="off"' +
-      (null === this.options.liveSearchPlaceholder ? '' : ' placeholder="' + htmlEscape(this.options.liveSearchPlaceholder) + '"') + '>' +
-      '</div>'
-          : '';
-      var actionsbox = this.multiple && this.options.actionsBox ?
-      '<div class="bs-actionsbox">' +
-      '<div class="btn-group btn-group-sm btn-block">' +
-      '<button type="button" class="actions-btn bs-select-all btn btn-default">' +
-      this.options.selectAllText +
-      '</button>' +
-      '<button type="button" class="actions-btn bs-deselect-all btn btn-default">' +
-      this.options.deselectAllText +
-      '</button>' +
-      '</div>' +
-      '</div>'
-          : '';
-      var donebutton = this.multiple && this.options.doneButton ?
-      '<div class="bs-donebutton">' +
-      '<div class="btn-group btn-block">' +
-      '<button type="button" class="btn btn-sm btn-default">' +
-      this.options.doneButtonText +
-      '</button>' +
-      '</div>' +
-      '</div>'
-          : '';
+          inputGroup = this.$element.parent().hasClass('input-group') ? ' input-group-btn' : '';
       var drop =
           '<div class="btn-group bootstrap-select' + multiple + inputGroup + '">' +
-          '<button type="button" class="' + this.options.styleBase + ' dropdown-toggle" data-toggle="dropdown"' + autofocus + '>' +
-          '<span class="filter-option pull-left"></span>&nbsp;' +
-          '<span class="caret"></span>' +
-          '</button>' +
+          this.createDropdownToggle() +
           '<div class="dropdown-menu open">' +
-          header +
-          searchbox +
-          actionsbox +
+          this.createHeader() +
+          this.createSearchbox() +
+          this.createActionsbox(); +
           '<ul class="dropdown-menu inner" role="menu">' +
           '</ul>' +
-          donebutton +
+          this.createDoneButton() +
           '</div>' +
           '</div>';
 
       return $(drop);
     },
+
+      createDropdownToggle: function() {
+          var autofocus = this.autofocus ? ' autofocus' : '';
+          return '<button type="button" class="' + this.options.styleBase + ' dropdown-toggle" data-toggle="dropdown"' + autofocus + '>' +
+              '<span class="filter-option pull-left"></span>&nbsp;' +
+              '<span class="caret"></span>' +
+              '</button>';
+      },
+
+      createHeader: function() {
+          return this.options.header
+              ? '<div class="popover-title"><button type="button" class="close" aria-hidden="true">&times;</button>' + this.options.header + '</div>'
+              : '';
+      },
+
+      createSearchbox: function() {
+          return this.options.liveSearch
+              ? '<div class="bs-searchbox">' +
+          '<input type="text" class="form-control" autocomplete="off"' +
+          (null === this.options.liveSearchPlaceholder ? '' : ' placeholder="' + htmlEscape(this.options.liveSearchPlaceholder) + '"') + '>' +
+          '</div>'
+              : '';
+      },
+
+      createActionsbox: function() {
+          return this.multiple && this.options.actionsBox ?
+          '<div class="bs-actionsbox">' +
+          '<div class="btn-group btn-group-sm btn-block">' +
+          '<button type="button" class="actions-btn bs-select-all btn btn-default">' +
+          this.options.selectAllText +
+          '</button>' +
+          '<button type="button" class="actions-btn bs-deselect-all btn btn-default">' +
+          this.options.deselectAllText +
+          '</button>' +
+          '</div>' +
+          '</div>'
+              : '';
+      },
+
+      createDoneButton: function() {
+          return this.multiple && this.options.doneButton
+              ? '<div class="bs-donebutton">' +
+                '<div class="btn-group btn-block">' +
+                '<button type="button" class="btn btn-sm btn-default">' +
+                this.options.doneButtonText +
+                '</button>' +
+                '</div>' +
+                '</div>'
+              : '';
+      },
 
     createView: function () {
       var $drop = this.createDropdown(),
