@@ -338,21 +338,21 @@
           inputGroup = this.$element.parent().hasClass('input-group') ? ' input-group-btn' : '';
       var drop =
           '<div class="btn-group bootstrap-select' + multiple + inputGroup + '">' +
-          this.createDropdownToggle() +
+          this.getDropdownToggle() +
           '<div class="dropdown-menu open">' +
-          this.createHeader() +
-          this.createSearchbox() +
-          this.createActionsbox(); +
+          this.getHeader() +
+          this.getSearchbox() +
+          this.getActionsbox(); +
           '<ul class="dropdown-menu inner" role="menu">' +
           '</ul>' +
-          this.createDoneButton() +
+          this.getDoneButton() +
           '</div>' +
           '</div>';
 
       return $(drop);
     },
 
-      createDropdownToggle: function() {
+      getDropdownToggle: function() {
           var autofocus = this.autofocus ? ' autofocus' : '';
           return '<button type="button" class="' + this.options.styleBase + ' dropdown-toggle" data-toggle="dropdown"' + autofocus + '>' +
               '<span class="filter-option pull-left"></span>&nbsp;' +
@@ -360,13 +360,13 @@
               '</button>';
       },
 
-      createHeader: function() {
+      getHeader: function() {
           return this.options.header
               ? '<div class="popover-title"><button type="button" class="close" aria-hidden="true">&times;</button>' + this.options.header + '</div>'
               : '';
       },
 
-      createSearchbox: function() {
+      getSearchbox: function() {
           return this.options.liveSearch
               ? '<div class="bs-searchbox">' +
           '<input type="text" class="form-control" autocomplete="off"' +
@@ -375,7 +375,7 @@
               : '';
       },
 
-      createActionsbox: function() {
+      getActionsbox: function() {
           return this.multiple && this.options.actionsBox ?
           '<div class="bs-actionsbox">' +
           '<div class="btn-group btn-group-sm btn-block">' +
@@ -390,7 +390,7 @@
               : '';
       },
 
-      createDoneButton: function() {
+      getDoneButton: function() {
           return this.multiple && this.options.doneButton
               ? '<div class="bs-donebutton">' +
                 '<div class="btn-group btn-block">' +
